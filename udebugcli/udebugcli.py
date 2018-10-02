@@ -5,7 +5,8 @@
 
 Usage:
   udebug login
-  udebug test <judge_alias> <problem_id> <cmd>
+  udebug retrieve <judge_alias> <problem_id>
+  udebug run <judge_alias> <problem_id> <cmd> [--failfast]
 
 """
 
@@ -40,8 +41,12 @@ def cmd_login():
     lib.set_login(answers["username"], answers["password"])
 
 
-def cmd_test(arguments):
-    lib.test(arguments['<judge_alias>'], arguments['<problem_id>'])
+def cmd_retrieve(arguments):
+    lib.retrieve_test_cases(arguments['<judge_alias>'], arguments['<problem_id>'])
+
+
+def cmd_run(arguments):
+    lib.run(arguments['<judge_alias>'], arguments['<problem_id>'], arguments["<cmd>"], arguments["--failfast"])
 
 
 def main():
@@ -55,8 +60,10 @@ def main():
     try:
         if arguments["login"]:
             cmd_login()
-        elif arguments["test"]:
-            cmd_test(arguments)
+        elif arguments["retrieve"]:
+            cmd_retrieve(arguments)
+        elif arguments["run"]:
+            cmd_run(arguments)
         else:
             cmd_help()
     except Exception as e:
