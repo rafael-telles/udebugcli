@@ -29,7 +29,7 @@ setup(
     install_requires=[
         "docopt==0.6.2",
         "PyInquirer==1.0.2",
-        "requests==2.19.1",
+        "requests==2.20.0",
         "requests-futures==0.9.7",
         "terminaltables==3.1.0",
         "termcolor==1.1.0"
